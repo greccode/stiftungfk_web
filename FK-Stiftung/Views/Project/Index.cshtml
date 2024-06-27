@@ -1,0 +1,38 @@
+﻿@model List<Project> // catching was wir übergeben kriegen from ProjectControllers View() method
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Projekte
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Project" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Neues Projekt hinzufügen
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Project Description
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.OrderBy(u=>u.Id))
+            {
+            <tr>
+                <tr>
+                    <td>@obj.Name</td> <!-- Änderung hier: Zeigt den Namen des Projekts an -->
+                    <td>@obj.Description</td> <!-- Änderung hier: Zeigt die Beschreibung des Projekts an -->
+                </tr>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
