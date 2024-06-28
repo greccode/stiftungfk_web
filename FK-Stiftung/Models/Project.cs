@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 namespace FK_Stiftung.Models
 {
@@ -6,9 +7,14 @@ namespace FK_Stiftung.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
+        [MinLength(1, ErrorMessage = "Projektname darf nicht leer sein")]
         [DisplayName("Projektname")]
         public string Name { get; set; }
+
+        [Required]
+        [MinLength(5, ErrorMessage = "Projektbeschreibung muss mindestens 5 Zeichen enthalten")]
         [DisplayName("Projektbeschreibung")]
         public string Description { get; set; }
     }

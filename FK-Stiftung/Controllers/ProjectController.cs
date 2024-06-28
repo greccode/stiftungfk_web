@@ -24,8 +24,18 @@ namespace FK_Stiftung.Controllers
         [HttpPost]
         public IActionResult Create(Project obj)
         {
-            _db.Projects.Add(obj);
-            _db.SaveChanges();
+            //server-side validation
+            if (obj.Name == obj.Description)
+            {
+                ModelState.AddModelError("name", "Name und Beschreibung können nicht exakt gleich sein");    
+            }
+
+            if (ModelState.IsValid) 
+            {
+                _db.Projects.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View();
         }
     }
