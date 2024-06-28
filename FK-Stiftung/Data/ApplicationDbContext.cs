@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FK_Stiftung.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -15,6 +15,7 @@ namespace FK_Stiftung.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Project>().HasData(
                 new Project { Id = 1, Name = "KI-Projekt", Description = "Das KI-Projekt ist super!" },
                 new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche." },
