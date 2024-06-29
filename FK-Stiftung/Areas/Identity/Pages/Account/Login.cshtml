@@ -6,6 +6,18 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<head>
+    <style>
+        /* Definieren Sie den Fokus-Stil für .form-control */
+        .form-control:focus {
+            outline: 2px solid red; /* Setzen Sie die Farbe der Umrandung auf rot */
+            box-shadow: 0 0 0 0.25rem pink; /* Optional: Hinzufügen eines Schattens */
+        }
+    </style>
+</head>
+
+<body>
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -77,6 +89,7 @@
         </section>
     </div>
 </div>
+</body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
