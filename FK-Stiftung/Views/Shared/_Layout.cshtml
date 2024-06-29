@@ -7,43 +7,104 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FK_Stiftung.styles.css" asp-append-version="true" />
+    <style>
+        .nav-link {
+            color: black; /* Standardfarbe */
+            transition: color 0.3s ease; /* Sanfter Übergangseffekt */
+        }
+
+            .nav-link:hover {
+                color: red; /* Farbe bei Hover */
+            }
+
+        body {
+            text-align: center; /* Zentriert den gesamten Inhalt */
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Mindesthöhe des Viewports */
+        }
+
+        .page-title {
+            text-align: center; /* Zentriert den Text innerhalb des Containers */
+            padding: 10px 0;
+            margin: 0;
+            font-size: 60px;
+            font-weight: bold;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer; /* Zeige die Hand als Zeiger an, um anzuzeigen, dass es anklickbar ist */
+            position: relative; /* Position relativ für Pseudo-Elemente */
+            display: inline-block; /* Inline-Block für das korrekte Verhalten der Animation */
+        }
+
+            .page-title::before {
+                content: ''; /* Pseudo-Element für die Unterstreichung */
+                position: absolute; /* Position absolut, um es innerhalb des Titels zu positionieren */
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px; /* Höhe der Unterstreichung */
+                background-color: #ff0000; /* Farbe der Unterstreichung */
+                transform-origin: bottom left; /* Ursprung der Transformation für den Effekt */
+                transform: scaleX(0); /* Skalierung auf Null für den Anfangszustand */
+                transition: transform 0.5s ease; /* Übergangseffekt für die Transformation */
+            }
+
+            .page-title:hover::before {
+                transform-origin: bottom right; /* Ändere den Ursprung der Transformation */
+                transform: scaleX(1); /* Skalierung auf volle Breite für den Hover-Zustand */
+            }
+
+        .navbar {
+            justify-content: center; /* Zentriere das Navbar-Menü */
+        }
+
+        .footer {
+            text-align: center; /* Zentriere den Text im Footer */
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3" data-bs-theme="dark"login>
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FK_Stiftung</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Project" asp-action="Index">Projects</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+    <div class="wrapper">
+        <header>
+            <h1 class="page-title" onclick="location.href='@Url.Action("Index", "Home")'">FAUST KULTUR STIFTUNG</h1>
+            <nav class="navbar  navbar-expand-sm navbar-expand-lg navbar-light bg-body-tertiatry border-bottom box-shadow mb-3" login>
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="#navbarColor04"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarColor04">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Project" asp-action="Index">Projects</a>
+                            </li>
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top bg-primary footer text-muted">
+            </nav>
+        </header>
         <div class="container">
-            Made with <i class="bi bi-balloon-heart"></i>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+        <footer class="border-top footer bg-body-tertiatry text-muted">
+            <div class="text-center">
+                Made with <i class="bi bi-balloon-heart"></i>
+            </div>
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
