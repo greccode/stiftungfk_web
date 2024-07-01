@@ -23,6 +23,11 @@ namespace FK_Stiftung.Controllers
             return View();
         }
 
+        public IActionResult Impressum()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
