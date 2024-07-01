@@ -34,6 +34,7 @@ namespace FK_Stiftung.Controllers
             {
                 _db.Projects.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Projekt erfolgreich erstellt";
                 return RedirectToAction("Index");
             }
             return View();
@@ -73,6 +74,7 @@ namespace FK_Stiftung.Controllers
             {
                 _db.Projects.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Projekt erfolgreich aktualisiert";
                 return RedirectToAction("Index");
             }
             return View();
@@ -107,7 +109,7 @@ namespace FK_Stiftung.Controllers
             }
             _db.Projects.Remove(obj);
             _db.SaveChanges();
-            
+            TempData["success"] = "Projekt erfolgreich gelöscht";
             return RedirectToAction("Index");
         }
     }
