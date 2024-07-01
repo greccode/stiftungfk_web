@@ -2,7 +2,7 @@
 
 namespace FK_Stiftung.Controllers
 {
-    public class Stiftungsziele : Controller
+    public class StiftungszieleController : Controller
     {
         public IActionResult Index()
         {
