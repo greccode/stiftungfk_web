@@ -70,6 +70,35 @@ namespace FK_Stiftung.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("FK_Stiftung.Models.ProjektFoerderer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjektFoerderer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Liam"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Leon"
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

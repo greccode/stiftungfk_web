@@ -21,6 +21,10 @@ namespace FK_Stiftung.Data
                 new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche.", PicturePath= "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg" },
                 new Project { Id = 3, Name = "Liam nerven", Description = "Unser bisher wichtigstes Projekt.", PicturePath= "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg" }
                 );
+            modelBuilder.Entity<ProjektFoerderer>().HasData(
+                new ProjektFoerderer { Id = 1, Name = "Liam" },
+                new ProjektFoerderer { Id = 2, Name = "Leon" }
+                );
             base.OnModelCreating(modelBuilder);
         }
     }
