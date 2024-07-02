@@ -64,6 +64,19 @@
         .footer {
             text-align: center; /* Zentriere den Text im Footer */
             padding: 10px 0;
+        
+        .footer-link
+        {
+            color: black; /* Standardfarbe für Footer-Links */
+            text-decoration: none; /* Keine Unterstreichung */
+            transition: color 0.3s ease; /* Sanfter Übergangseffekt */
+            margin: 0 10px; /* Abstände zwischen den Links */
+        }
+
+        .footer-link:hover {
+            color: red; /* Farbe bei Hover */
+        }
+
         }
     </style>
 </head>
@@ -83,10 +96,16 @@
                                 <a class="nav-link" asp-controller="Onlinemagazin" asp-action="Index">Onlinemagazin Faust-Kultur</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link" asp-controller="Project" asp-action="Index">Projekte</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Project" asp-action="Index">Projects</a>
+                                <a class="nav-link" asp-controller="Stiftungsziele" asp-action="Index">Stiftungsziele</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="ProjektFoerderer" asp-action="Index">Projekt & Förderer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Kontakt" asp-action="Index">Kontakt</a>
                             </li>
                         </ul>
                         <partial name="_LoginPartial" />
@@ -99,10 +118,9 @@
                 @RenderBody()
             </main>
         </div>
-        <footer class="border-top footer bg-body-tertiatry text-muted">
-            <div class="text-center">
-                Made with <i class="bi bi-balloon-heart"></i>
-            </div>
+        <footer class="border-top footer bg-body-tertiatry text-muted text-start">
+            <a href="/Home/Impressum/" class="footer-link">Impressum</a> |
+            <a href="/Home/Privacy" class="footer-link">Datenschutz</a>
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

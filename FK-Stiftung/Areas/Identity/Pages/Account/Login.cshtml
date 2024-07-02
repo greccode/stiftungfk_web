@@ -14,6 +14,20 @@
             outline: 2px solid red; /* Setzen Sie die Farbe der Umrandung auf rot */
             box-shadow: 0 0 0 0.25rem pink; /* Optional: Hinzufügen eines Schattens */
         }
+        a{
+            color: red;
+        }
+
+        .btn-custom {
+            background-color: black;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: red;
+                color: white;
+            }
     </style>
 </head>
 
@@ -42,7 +56,7 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-custom">Log in</button>
                 </div>
                 <div>
                     <p>
@@ -79,7 +93,7 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-custom" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                 }
                             </p>
                         </div>
