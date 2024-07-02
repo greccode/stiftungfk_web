@@ -1,20 +1,43 @@
-﻿@{
-    ViewData["Title"] = "ProjektFoerderer";
-}
-
-<head>
-    <style>
-        a{
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="text-start fst-italic">
-            <p style="color: darkred"><b>Wir danken unseren Partnern, Förderern und privaten Spendern für das Mitwirken am Zustandekommen unserer vielfältigen Projekte sowie an der Weiterentwicklung des Onlinemagazins Faust-Kultur.</b></p>
+﻿@model List<ProjektFoerderer> // catching was wir übergeben kriegen from ProjectControllers View() method
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Projektförderer und Spender
+            </h2>
         </div>
-
+        <div class="col-6 text-end">
+            <a asp-controller="ProjektFoerderer" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Neuen Projektförderer hinzufügen
+            </a>
+        </div>
     </div>
-</body>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Name des Projektförderers
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var name in Model.OrderBy(u => u.Id))
+            {
+                <tr>
+                    <td>@name.Name</td> <!-- Änderung hier: Zeigt den Namen des Projekts an -->
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="ProjektFoerderer" asp-action="Edit" asp-route-id="@name.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="ProjektFoerderer" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
