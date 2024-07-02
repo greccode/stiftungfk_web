@@ -17,5 +17,7 @@ namespace FK_Stiftung.Models
         [MinLength(5, ErrorMessage = "Projektbeschreibung muss mindestens 5 Zeichen enthalten")]
         [DisplayName("Projektbeschreibung")]
         public string Description { get; set; }
+
+        public string PicturePath { get; set; }
     }
 }

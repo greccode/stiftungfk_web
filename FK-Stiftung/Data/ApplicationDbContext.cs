@@ -17,9 +17,9 @@ namespace FK_Stiftung.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Project>().HasData(
-                new Project { Id = 1, Name = "KI-Projekt", Description = "Das KI-Projekt ist super!" },
-                new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche." },
-                new Project { Id = 3, Name = "Liam nerven", Description = "Unser bisher wichtigstes Projekt." }
+                new Project { Id = 1, Name = "KI-Projekt", Description = "Das KI-Projekt ist super!", PicturePath= "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg" },
+                new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche.", PicturePath= "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg" },
+                new Project { Id = 3, Name = "Liam nerven", Description = "Unser bisher wichtigstes Projekt.", PicturePath= "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg" }
                 );
             base.OnModelCreating(modelBuilder);
         }

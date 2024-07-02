@@ -38,6 +38,10 @@ namespace FK_Stiftung.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
@@ -47,19 +51,22 @@ namespace FK_Stiftung.Data.Migrations
                         {
                             Id = 1,
                             Description = "Das KI-Projekt ist super!",
-                            Name = "KI-Projekt"
+                            Name = "KI-Projekt",
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Mehr über unser Projekt: Europawoche.",
-                            Name = "Europawoche"
+                            Name = "Europawoche",
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         },
                         new
                         {
                             Id = 3,
                             Description = "Unser bisher wichtigstes Projekt.",
-                            Name = "Liam nerven"
+                            Name = "Liam nerven",
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         });
                 });
 

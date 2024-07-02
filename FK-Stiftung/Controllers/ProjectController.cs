@@ -16,6 +16,13 @@ namespace FK_Stiftung.Controllers
             List<Project> objProjectList= _db.Projects.ToList();
             return View(objProjectList);
         }
+
+        public IActionResult Index2()
+        {
+            List<Project> objProjectList = _db.Projects.ToList();
+            return View(objProjectList);
+        }
+
         public IActionResult Create()
         {
             return View();
