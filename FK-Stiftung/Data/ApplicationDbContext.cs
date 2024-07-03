@@ -14,6 +14,7 @@ namespace FK_Stiftung.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjektFoerderer> ProjektFoerderer { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,8 +26,7 @@ namespace FK_Stiftung.Data
             modelBuilder.Entity<ProjektFoerderer>().HasData(
                 new ProjektFoerderer { Id = 1, Name = "Liam" },
                 new ProjektFoerderer { Id = 2, Name = "Leon" }
-                );
-            base.OnModelCreating(modelBuilder);
+                );            
         }
     }
 }
