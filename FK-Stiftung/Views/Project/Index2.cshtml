@@ -1,0 +1,101 @@
+﻿@model List<Project> // catching was wir übergeben kriegen from ProjectControllers View() method
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektgalerie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .gallery-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 300px; /* Ensures all items are the same width */
+            height: 350px; /* Ensures a fixed height for the items */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .gallery-item-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item-info p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%; /* Ensures the text fits within the container */
+        }
+
+        @@ media (max-width: 600px) {
+            .gallery-item {
+                width: 100%; /* Adjusts the width on smaller screens */
+                height: auto; /* Adjusts the height on smaller screens */
+            }
+
+            .gallery-item img {
+                height: 150px;
+            }
+
+            .gallery-item-info p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        @foreach (var project in Model.OrderBy(u => u.Id))
+        {
+            <div class="gallery-item">
+                <img src=@project.PicturePath>
+                <div class="gallery-item-info">
+                    <p>@project.Name</p>
+                </div>
+            </div>
+        }
+        @if (!Model.Any())
+        {
+            <p>Keine Projekte verfügbar.</p>
+        }
+    </div>
+</body>
+</html>
