@@ -19,9 +19,9 @@ namespace FK_Stiftung.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Project>().HasData(
-                new Project { Id = 1, Name = "KI-Projekt", Description = "Das KI-Projekt ist super!" },
-                new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche." },
-                new Project { Id = 3, Name = "Liam nerven", Description = "Unser bisher wichtigstes Projekt." }
+                new Project { Id = 1, Name = "KI-Projekt", Description = "Das KI-Projekt ist super!", PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card" },
+                new Project { Id = 2, Name = "Europawoche", Description = "Mehr über unser Projekt: Europawoche.", PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card" },
+                new Project { Id = 3, Name = "Liam nerven", Description = "Unser bisher wichtigstes Projekt.", PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card" }
                 );
             modelBuilder.Entity<ProjektFoerderer>().HasData(
                 new ProjektFoerderer { Id = 1, Name = "Liam" },
