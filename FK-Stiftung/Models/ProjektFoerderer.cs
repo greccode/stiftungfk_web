@@ -13,5 +13,7 @@ namespace FK_Stiftung.Models
         [DisplayName("Name des Projektförderers")]
         public string Name { get; set; }
 
+        public string ImageUrl { get; set; }
+
     }
 }

@@ -1,0 +1,126 @@
+﻿@model List<ProjektFoerderer> // catching was wir übergeben kriegen from ProjectControllers View() method
+
+
+@foreach (var donor in Model.OrderBy(u => u.Id))
+{
+    <div class="donor-item"
+         onclick="toggleHighlight(this)"
+         onmouseover="showSneakPeek(event, 'static.spektrum.de/fm/912/f2000x857/GettyImages-1472751646_bearb.jpg')"
+         onmouseout="hideSneakPeek()">
+        @donor.Name
+    </div>
+}
+
+<div id="sneakPeek" class="sneak-peek">
+    <img id="sneakPeekImage" src="" alt="Donor Preview">
+</div>
+<style>
+    .donor-list {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .donor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .donor-item {
+        padding: 15px;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .donor-item:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+    .highlighted {
+        background-color: #ffd700;
+        font-weight: bold;
+    }
+
+    .sneak-peek {
+        position: fixed;
+        display: none;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+        .sneak-peek img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+</style>
+
+<script>
+    // Preload images
+    window.addEventListener('load', function () {
+    @foreach (var donor in Model.OrderBy(u => u.Id))
+    {
+        <text>
+            var img = new Image();
+            img.src = '@donor.ImageUrl';
+        </text>
+    }
+        });
+
+    function toggleHighlight(element) {
+        element.classList.toggle('highlighted');
+    }
+
+    function showSneakPeek(event, imageUrl) {
+        var sneakPeek = document.getElementById('sneakPeek');
+        var sneakPeekImage = document.getElementById('sneakPeekImage');
+
+        // Set src and show sneak peek only when image is loaded
+        var tempImg = new Image();
+        tempImg.onload = function () {
+            sneakPeekImage.src = imageUrl;
+            sneakPeek.style.display = 'block';
+            positionSneakPeek(event);
+        };
+        tempImg.onerror = function () {
+            console.error('Failed to load image:', imageUrl);
+            sneakPeek.style.display = 'none';
+        };
+        tempImg.src = imageUrl;
+    }
+
+    function hideSneakPeek() {
+        var sneakPeek = document.getElementById('sneakPeek');
+        sneakPeek.style.display = 'none';
+    }
+
+    function positionSneakPeek(event) {
+        var sneakPeek = document.getElementById('sneakPeek');
+        var rect = sneakPeek.getBoundingClientRect();
+        var x = event.clientX + 10;
+        var y = event.clientY + 10;
+
+        // Adjust position if it goes off-screen
+        if (x + rect.width > window.innerWidth) {
+            x = window.innerWidth - rect.width;
+        }
+        if (y + rect.height > window.innerHeight) {
+            y = window.innerHeight - rect.height;
+        }
+
+        sneakPeek.style.left = x + 'px';
+        sneakPeek.style.top = y + 'px';
+    }
+    document.querySelectorAll('.donor-item').forEach(item => {
+        item.addEventListener('mouseover', function (event) {
+            showSneakPeek(event, 'static.spektrum.de/fm/912/f2000x857/GettyImages-1472751646_bearb.jpg');
+        });
+    });
+
+</script>
