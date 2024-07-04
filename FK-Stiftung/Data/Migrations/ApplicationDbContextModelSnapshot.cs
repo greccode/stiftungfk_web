@@ -44,7 +44,7 @@ namespace FK_Stiftung.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
 
                     b.HasData(
                         new
@@ -52,21 +52,21 @@ namespace FK_Stiftung.Data.Migrations
                             Id = 1,
                             Description = "Das KI-Projekt ist super!",
                             Name = "KI-Projekt",
-                            PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card"
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Mehr über unser Projekt: Europawoche.",
                             Name = "Europawoche",
-                            PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card"
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         },
                         new
                         {
                             Id = 3,
                             Description = "Unser bisher wichtigstes Projekt.",
                             Name = "Liam nerven",
-                            PicturePath = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=205119&type=card"
+                            PicturePath = "C:\\Users\\leono\\source\\repos\\FK-Stiftung\\FK-Stiftung\\wwwroot\\images\\buch_offen_mit_schuber.jpg"
                         });
                 });
 
@@ -84,7 +84,7 @@ namespace FK_Stiftung.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjektFoerderer");
+                    b.ToTable("ProjektFoerderer", (string)null);
 
                     b.HasData(
                         new
