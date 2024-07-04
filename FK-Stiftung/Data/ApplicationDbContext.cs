@@ -13,6 +13,7 @@ namespace FK_Stiftung.Data
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjektFoerderer> ProjektFoerderer { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
