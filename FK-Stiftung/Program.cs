@@ -1,3 +1,4 @@
+using FK_Stiftung;
 using FK_Stiftung.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +12,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// what does this line do
+// what does tsisssssss
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // what does this line do
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<Microsoft.AspNetCore.Identity.UI.Services.IEmailSender,EmailSender>();
 
 var app = builder.Build();
 
