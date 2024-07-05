@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Content Include="Controllers\buch_offen_mit_schuber.jpg" />
+    <Content Include="Views\ProjektFoerderer\textland.jpg" />
   </ItemGroup>
 
 </Project>

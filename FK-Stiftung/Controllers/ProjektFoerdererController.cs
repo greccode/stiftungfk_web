@@ -1,6 +1,8 @@
 ﻿using FK_Stiftung.Data;
 using FK_Stiftung.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Policy;
 
 namespace FK_Stiftung.Controllers
 {
@@ -17,26 +19,21 @@ namespace FK_Stiftung.Controllers
         }
         public IActionResult Index()
         {
-            var projektFoerderers = new List<ProjektFoerderer>
-            {
-                new ProjektFoerderer { Id = 1, Name = "Donor 1", ImageUrl = "~/buch_offen_mit_schuber.jpg" },
-                new ProjektFoerderer { Id = 2, Name = "Donor 2", ImageUrl = "static.spektrum.de/fm/912/f2000x857/GettyImages-1472751646_bearb.jpg" },
-                // Add more donors as needed
-            };
-            //List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
-            return View(projektFoerderers);
+            
+            List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
+            return View(names);
         }
         public IActionResult Index2()
         {
 
             var projektFoerderers = new List<ProjektFoerderer>
             {
-                new ProjektFoerderer { Id = 1, Name = "Donor 1", ImageUrl = "~/buch_offen_mit_schuber.jpg" },
-                new ProjektFoerderer { Id = 2, Name = "Donor 2", ImageUrl = "static.spektrum.de/fm/912/f2000x857/GettyImages-1472751646_bearb.jpg" },
+                new ProjektFoerderer { Id = 1, Name = "Donor 1", ImageUrl = "/images/demenzvor.jpg" },
+                new ProjektFoerderer { Id = 2, Name = "Donor 2", ImageUrl = "https://static.spektrum.de/fm/912/f2000x857/GettyImages-1139047662.jpg" },
                 // Add more donors as needed
             };
 
-            //List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
+            List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
             return View(projektFoerderers);
         }
         public IActionResult Create()
@@ -124,8 +121,8 @@ namespace FK_Stiftung.Controllers
             }
             _db.ProjektFoerderer.Remove(name);
             _db.SaveChanges();
-
             return RedirectToAction("Index");
         }
+        
     }
 }
