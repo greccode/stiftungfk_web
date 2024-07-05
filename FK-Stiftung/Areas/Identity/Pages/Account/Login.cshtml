@@ -5,16 +5,15 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-
 <head>
     <style>
-        /* Definieren Sie den Fokus-Stil für .form-control */
+        /* Ihre bestehenden Stile */
         .form-control:focus {
-            outline: 2px solid red; /* Setzen Sie die Farbe der Umrandung auf rot */
-            box-shadow: 0 0 0 0.25rem pink; /* Optional: Hinzufügen eines Schattens */
+            outline: 2px solid red;
+            box-shadow: 0 0 0 0.25rem pink;
         }
-        a{
+
+        a {
             color: red;
         }
 
@@ -28,12 +27,56 @@
                 background-color: red;
                 color: white;
             }
+
+        /* Neue Stile für die Zitat-Animation */
+        .row {
+            display: flex;
+            margin-right: 0;
+        }
+
+        .login-column {
+            flex: 0 0 auto;
+            width: 33.333%;
+            padding-right: 15px;
+        }
+
+        .quote-column {
+            flex: 1;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .quote-container {
+            text-align: center;
+            font-family: 'Georgia', serif;
+            max-width: 80%;
+        }
+
+        .quote {
+            font-size: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .author {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transition-delay: 0.5s;
+        }
     </style>
 </head>
 
 <body>
 <div class="row">
-    <div class="col-md-4">
+    <div class="login-column">
         <section>
             <form id="account" method="post">
                 <h2>Use a local account to log in.</h2>
@@ -72,39 +115,63 @@
             </form>
         </section>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-custom" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+        <div class="quote-column">
+            <div class="quote-container">
+                <p class="quote" id="quote"></p>
+                <p class="author" id="author"></p>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        const quotes = [
+            { text: "Jeder Künstler war zuerst ein Amateur.", author: "Ralph Waldo Emerson" },
+            { text: "Kunst wäscht den Staub des Alltags von der Seele.", author: "Pablo Picasso" },
+            { text: "Kreativität braucht Mut.", author: "Henri Matisse" },
+            { text: "Ich träume meine Malerei und male dann meinen Traum.", author: "Vincent van Gogh" },
+            { text: "Die Aufgabe der Kunst ist es, das Wesentliche sichtbar zu machen.", author: "Aristoteles" },
+            { text: "Kunst ist eine Lüge, die uns die Wahrheit erkennen lässt.", author: "Pablo Picasso" },
+            { text: "Jedes Kind ist ein Künstler. Das Problem ist, ein Künstler zu bleiben, wenn man erwachsen wird.", author: "Pablo Picasso" },
+            { text: "Ich habe keine besondere Begabung, sondern bin nur leidenschaftlich neugierig.", author: "Albert Einstein" },
+            { text: "Die Kunst ist eine Vermittlerin des Unaussprechlichen.", author: "Johann Wolfgang von Goethe" },
+            { text: "Kunst ist nicht das, was du siehst, sondern was du andere sehen lässt.", author: "Edgar Degas" }
+        ];
+
+        const quoteElement = document.getElementById('quote');
+        const authorElement = document.getElementById('author');
+
+        function showQuote(quote) {
+            quoteElement.textContent = `"${quote.text}"`;
+            authorElement.textContent = `- ${quote.author}`;
+
+            quoteElement.style.opacity = '1';
+            quoteElement.style.transform = 'translateY(0)';
+
+            setTimeout(() => {
+                authorElement.style.opacity = '1';
+                authorElement.style.transform = 'translateY(0)';
+            }, 500);
+        }
+
+        function hideQuote() {
+            quoteElement.style.opacity = '0';
+            quoteElement.style.transform = 'translateY(20px)';
+            authorElement.style.opacity = '0';
+            authorElement.style.transform = 'translateY(20px)';
+        }
+
+        function changeQuote() {
+            hideQuote();
+            setTimeout(() => {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                showQuote(randomQuote);
+            }, 1000);
+        }
+
+        changeQuote(); // Initial quote
+        setInterval(changeQuote, 10000); // Change quote every 10 seconds
+    </script>
 }
