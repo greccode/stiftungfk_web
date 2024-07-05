@@ -4,89 +4,144 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
-
 <head>
     <style>
-        
         .form-control:focus {
-            outline: 2px solid red; 
-            box-shadow: 0 0 0 0.25rem pink; 
+            outline: 2px solid red;
+            box-shadow: 0 0 0 0.25rem pink;
         }
-        a{
+
+        a {
             color: red;
         }
-        
+
         .btn-custom {
-            background-color: black; 
-            color: white; 
-            transition: background-color 0.3s ease; 
+            background-color: black;
+            color: white;
+            transition: background-color 0.3s ease;
         }
 
             .btn-custom:hover {
-                background-color: red; 
-                color: white; 
+                background-color: red;
+                color: white;
             }
 
+        .creative-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: white;
+            border-left: 1px solid #ccc; /* Optional: Trennlinie zwischen den Spalten */
+        }
+
+        .creative-content-inner {
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .creative-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .creative-content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Kreative Galerie mit Kunstwerken */
+        .art-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .art-item {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+            .art-item:hover {
+                transform: scale(1.1); /* Vergrößerung beim Überfahren */
+            }
+
+            .art-item img {
+                width: 100%;
+                height: auto;
+                transition: transform 0.3s ease; /* Sanfte Vergrößerung des Bildes */
+            }
+
+            .art-item .art-title {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-size: 14px;
+            }
     </style>
 </head>
 
 <body>
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h2>Create a new account.</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
                 <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-custom">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                        <button type="submit" class="btn btn-primary btn-custom" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="creative-content">
+                <div class="creative-content-inner">
+                    <div class="art-gallery">
+                        <div class="art-item">
+                            <img src="/images/artwork1.jpg" alt="Artwork 1">
                         </div>
-                    </form>
-                }
-            }
-        </section>
+                        <div class="art-item">
+                            <img src="/images/artwork2.webp" alt="Artwork 2">
+                        </div>
+                        <div class="art-item">
+                            <img src="/images/artwork3.jpg" alt="Artwork 3">
+                        </div>
+                        <div class="art-item">
+                            <img src="/images/artwork4.jpg" alt="Artwork 4">
+                        </div>
+                        <div class="art-item">
+                            <img src="/images/artwork5.jpeg" alt="Artwork 5">
+                        </div>
+                        <div class="art-item">
+                            <img src="/images/artwork6.jpeg" alt="Artwork 6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 
 @section Scripts {

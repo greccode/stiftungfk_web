@@ -1,23 +1,62 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "Registrierungsbestätigung";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
-    }
-    else
-    {
-<p>
-        Please check your email to confirm your account.
-</p>
-    }
-}
+<head>
+    <style>
+        .confirmation-container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
 
+        .confirmation-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-message {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="confirmation-container" id="confirmation-container">
+        <h2 class="confirmation-title">Registrierung erfolgreich!</h2>
+        <p class="confirmation-message">
+            Herzlichen Glückwunsch! Ihre Registrierung war erfolgreich.
+            Bitte überprüfen Sie Ihre E-Mails, um Ihr Konto zu bestätigen.
+        </p>
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGtpdmZ0eGhsMW02dWg4dHR2N3h6Y3JkcTM1ZnR1NHR0c244cHRkcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEduXdm2gjnrsJBOo/giphy.gif" alt="Checkmark Animation" class="checkmark">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var container = document.getElementById("confirmation-container");
+            setTimeout(function () {
+                container.style.transform = "scale(1)";
+                container.style.opacity = "1";
+            }, 10);
+        });
+    </script>
+</body>

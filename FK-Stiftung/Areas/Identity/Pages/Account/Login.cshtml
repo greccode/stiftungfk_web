@@ -7,7 +7,6 @@
 
 <head>
     <style>
-        /* Ihre bestehenden Stile */
         .form-control:focus {
             outline: 2px solid red;
             box-shadow: 0 0 0 0.25rem pink;
@@ -28,7 +27,7 @@
                 color: white;
             }
 
-        /* Neue Stile für die Zitat-Animation */
+      
         .row {
             display: flex;
             margin-right: 0;
@@ -102,6 +101,7 @@
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-custom">Log in</button>
                 </div>
                 <div>
+                    <br />
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -171,7 +171,7 @@
             }, 1000);
         }
 
-        changeQuote(); // Initial quote
-        setInterval(changeQuote, 10000); // Change quote every 10 seconds
+        changeQuote();
+        setInterval(changeQuote, 10000);
     </script>
 }
