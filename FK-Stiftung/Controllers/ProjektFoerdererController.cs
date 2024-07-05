@@ -19,22 +19,13 @@ namespace FK_Stiftung.Controllers
         }
         public IActionResult Index()
         {
-            
-            List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
-            return View(names);
+            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
+            return View(donors);
         }
         public IActionResult Index2()
         {
-
-            var projektFoerderers = new List<ProjektFoerderer>
-            {
-                new ProjektFoerderer { Id = 1, Name = "Donor 1", ImageUrl = "/images/demenzvor.jpg" },
-                new ProjektFoerderer { Id = 2, Name = "Donor 2", ImageUrl = "https://static.spektrum.de/fm/912/f2000x857/GettyImages-1139047662.jpg" },
-                // Add more donors as needed
-            };
-
-            List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
-            return View(projektFoerderers);
+            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
+            return View(donors);
         }
         public IActionResult Create()
         {
