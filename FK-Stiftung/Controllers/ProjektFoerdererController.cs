@@ -1,13 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using FK_Stiftung.Data;
+using FK_Stiftung.Models;
+using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Policy;
 
 namespace FK_Stiftung.Controllers
 {
     public class ProjektFoerdererController : Controller
     {
+        /*public IActionResult Index()
+        {
+            return View();
+        }*/
+        private readonly ApplicationDbContext _db;
+        public ProjektFoerdererController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         public IActionResult Index()
         {
-            List<ProjektFoerderer> names = _db.ProjektFoerderer.ToList();
-            return View(names);
+            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
+            return View(donors);
+        }
+        public IActionResult Index2()
+        {
+            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
+            return View(donors);
         }
         public IActionResult Create()
         {
@@ -48,7 +66,7 @@ namespace FK_Stiftung.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ProjektFoerderer names)
+        public IActionResult Edit(ProjektFoerderer name)
         {
             //server-side validation
             /*if (obj.Name == obj.Description)
@@ -58,7 +76,7 @@ namespace FK_Stiftung.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.ProjektFoerderer.Update(names);
+                _db.ProjektFoerderer.Update(name);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -87,15 +105,15 @@ namespace FK_Stiftung.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            ProjektFoerderer names = _db.ProjektFoerderer.Find(id);
-            if (names == null)
+            ProjektFoerderer name = _db.ProjektFoerderer.Find(id);
+            if (name == null)
             {
                 return NotFound();
             }
-            _db.ProjektFoerderer.Remove(names);
+            _db.ProjektFoerderer.Remove(name);
             _db.SaveChanges();
-
             return RedirectToAction("Index");
         }
+        
     }
 }
