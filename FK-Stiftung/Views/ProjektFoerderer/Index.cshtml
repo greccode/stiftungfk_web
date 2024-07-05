@@ -1,19 +1,10 @@
-﻿@{
-    ViewData["Title"] = "ProjektFoerderer";
-}
-
-<head>
-    <style>
-        a{
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="text-start fst-italic">
-            <p style="color: darkred"><b>Wir danken unseren Partnern, Förderern und privaten Spendern für das Mitwirken am Zustandekommen unserer vielfältigen Projekte sowie an der Weiterentwicklung des Onlinemagazins Faust-Kultur.</b></p>
+@model List<ProjektFoerderer> // catching was wir übergeben kriegen from ProjectControllers View() method
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Projektförderer und Spender
+            </h2>
         </div>
         <div class="col-6 text-end">
             <a asp-controller="ProjektFoerderer" asp-action="Create" class="btn btn-primary">
@@ -40,7 +31,7 @@
                             <a asp-controller="ProjektFoerderer" asp-action="Edit" asp-route-id="@name.Id" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a asp-controller="ProjektFoerderer" asp-action="Delete" asp-route-id="@name.Id" class="btn btn-danger mx-2">
+                            <a asp-controller="ProjektFoerderer" asp-action="Delete" class="btn btn-danger mx-2">
                                 <i class="bi bi-trash-fill"></i> Delete
                             </a>
                         </div>
