@@ -20,3 +20,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#photo {
+    width: 10px;
+    background-color: black;
+}
+
+.photo {
+    width: 10px;
+    background-color: black;
+}
+
+#photogallery {
+    width: 10px;
+    background-color: black;
+}
+
+.photogallery {
+    width: 10px;
+    background-color: black;
+}

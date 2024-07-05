@@ -1,4 +1,4 @@
-﻿using FK_Stiftung.Data;
+using FK_Stiftung.Data;
 using FK_Stiftung.Models;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;

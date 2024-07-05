@@ -1,4 +1,4 @@
-﻿using FK_Stiftung.Models;
+using FK_Stiftung.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
