@@ -1,48 +1,193 @@
-﻿﻿
+﻿
+@*
 @model List<Project> // catching was wir übergeben kriegen from ProjectControllers View() method
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Projekte
-            </h2>
-        </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Project" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Neues Projekt hinzufügen
-            </a>
-        </div>
-    </div>
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>
-                Project Name
-            </th>
-            <th>
-                Project Description
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model.OrderBy(u=>u.Id))
-            {
-                <tr>
-                    <td>@obj.Name</td> <!-- Änderung hier: Zeigt den Namen des Projekts an -->
-                    <td>@obj.Description</td> <!-- Änderung hier: Zeigt die Beschreibung des Projekts an -->
-                    <td>
-                        <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Project" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                            <a asp-controller="Project" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                <i class="bi bi-trash-fill"></i> Delete
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektgalerie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .gallery-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 300px; /* Ensures all items are the same width */
+            height: 350px; /* Ensures a fixed height for the items */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .gallery-item-info {
+            padding: 0px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item-info p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%; /* Ensures the text fits within the container */
+        }
+
+        @@ media (max-width: 600px) {
+            .gallery-item {
+                width: 100%; /* Adjusts the width on smaller screens */
+                height: auto; /* Adjusts the height on smaller screens */
             }
-        </tbody>
-    </table>
+
+            .gallery-item img {
+                height: 200px;
+            }
+
+            .gallery-item-info p {
+                font-size: 25px;
+                font-family: monospace;
+                font-style: oblique;
+                /* Doesn't work for some fucking reason */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        @foreach (var project in Model.OrderBy(u => u.Id))
+        {
+            <div class="gallery-item">
+                <img src=@project.PicturePath>
+                <div class="gallery-item-info">
+                    <p>@project.Name</p>
+                </div>
+            </div>
+        }
+        @if (!Model.Any())
+        {
+            <p>Keine Projekte verfügbar.</p>
+        }
+    </div>
+</body>
+</html>
+ *@
+ @model List<Project>
+
+<style>
+    .news-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .news-item {
+        display: flex;
+        gap: 20px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 20px;
+    }
+
+    .news-image {
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .news-image:hover {
+        transform: scale(1.05);
+    }
+
+    .news-content {
+        flex: 1;
+        margin: auto 0;
+    }
+
+    .news-date {
+        display: inline-block;
+        background-color: #000;
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .news-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .news-description {
+        margin-bottom: 15px;
+    }
+
+    .read-more {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #fff;
+        color: #000;
+        text-decoration: none;
+        border: 2px solid #000;
+        transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+        background-color: #ff0000;
+        color: #000;
+    }
+
+</style>
+
+<div class="news-container">
+    @foreach (var project in Model)
+    {
+        <div class="news-item">
+            <img src="@project.PicturePath" alt="@project.Name" class="news-image" />
+            <div class="news-content">
+                <div class="news-date">Juli 2024</div>
+                <h2 class="news-title">@project.Name</h2>
+                <p class="news-description">@project.Description</p>
+                <a href="#" class="read-more">WEITERLESEN →</a>
+            </div>
+        </div>
+    }
 </div>

@@ -1,43 +1,101 @@
-@model List<ProjektFoerderer> // catching was wir übergeben kriegen from ProjectControllers View() method
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Projektförderer und Spender
-            </h2>
+﻿@model List<ProjektFoerderer>
+
+<h1>Unsere Projektförderer</h1>
+
+<div class="donor-grid">
+    @foreach (var donor in Model)
+    {
+        <div class="donor-item" onclick="window.location.href = '@donor.ImageUrl'">
+            <img src="@donor.ImageUrl" class="donor-image" alt="@donor.Name" />
+            <div class="donor-info">
+                <h5>@donor.Name</h5>
+            </div>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="ProjektFoerderer" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Neuen Projektförderer hinzufügen
-            </a>
-        </div>
-    </div>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Name des Projektförderers
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var name in Model.OrderBy(u => u.Id))
-            {
-                <tr>
-                    <td>@name.Name</td> <!-- Änderung hier: Zeigt den Namen des Projekts an -->
-                    <td>
-                        <div class="w-75 btn-group" role="group">
-                            <a asp-controller="ProjektFoerderer" asp-action="Edit" asp-route-id="@name.Id" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                            <a asp-controller="ProjektFoerderer" asp-action="Delete" class="btn btn-danger mx-2">
-                                <i class="bi bi-trash-fill"></i> Delete
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    }
 </div>
+
+<style>
+    .donor-grid {
+        padding: 40px 0px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .donor-item {
+        position: relative;
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        height:250px;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+    .donor-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid transparent;
+        box-sizing: border-box;
+        pointer-events: none;
+        transition: border-color 0.7s;
+    }
+
+    .donor-item:hover::before {
+        border-color: red;
+        animation: border-flow 1s linear forwards;
+    }
+
+    @@ keyframes border-flow {
+        0% {
+            border-color: red transparent transparent transparent;
+        }
+        25% {
+            border-color: red red transparent transparent;
+        }
+        50% {
+            border-color: red red red transparent;
+        }
+        75% {
+            border-color: red red red red;
+        }
+        100% {
+            border-color: red;
+        }
+    }
+
+    .donor-image {
+        max-width: 100%;
+        height: 200px;
+        object-fit: contain;
+        z-index: 1;
+    }
+
+    .donor-info {
+        margin-top: 10px;
+        text-align: center;
+        z-index: 1;
+    }
+</style>
+
+<script>
+    // Add hover effect for scaling
+    document.querySelectorAll('.donor-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'scale(1.05)';
+        });
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'scale(1)';
+        });
+    });
+</script>
