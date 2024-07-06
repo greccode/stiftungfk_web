@@ -37,4 +37,8 @@
     <None Include="wwwroot\images\textland.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\NewFolder\" />
+  </ItemGroup>
+
 </Project>

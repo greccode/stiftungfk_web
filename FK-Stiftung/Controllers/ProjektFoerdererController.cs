@@ -66,7 +66,7 @@ namespace FK_Stiftung.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ProjektFoerderer name)
+        public IActionResult Edit(ProjektFoerderer obj)
         {
             //server-side validation
             /*if (obj.Name == obj.Description)
@@ -76,7 +76,7 @@ namespace FK_Stiftung.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.ProjektFoerderer.Update(name);
+                _db.ProjektFoerderer.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
