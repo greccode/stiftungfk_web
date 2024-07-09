@@ -2,40 +2,94 @@
     ViewData["Title"] = "Kontakt";
 }
 
-<head>
-    <style>
-        a {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    
+<div class="kontakt-content">
+    <div class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <h1 class="mb-4">Kontaktieren Sie uns</h1>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="text-start">
             <p><b>Wir hoffen, dass zahlreiche Kulturinteressierte zur Weiterentwicklung des Kulturportals beitragen werden oder ausgewählte Projekte unserer Stiftung mit ihrer Spende unterstützen.</b></p>
-            <br /><br />
-            <p style="color: darkred"><b>UNSERE KONTOVERBINDUNG:</b></p>
             <br />
-            <p>Nassauische Sparkasse 0159 042 00 1</p>
-            <p>Kontoinhaber: <b>Faust-Kultur-Stiftung</b></p>
-            <br />
-            <p>BLZ: 51050015</p>
-            <p>IBAN: DE89 5105 0015 0159 0420 01</p>
-            <p>BIC NASSDE55XXX</p>
-            <p class="fst-italic">Wir versichern Ihnen, dass Ihre Daten vertraulich behandelt werden.</p>
-            <p class ="fst-italic">(Bitte geben Sie Namen und Adresse in der Betreffzeile der Überweisung an, wenn eine Spendenquittung übersandt werden soll.)</p>
+            <div class="highlight">
+                <p style="color: darkred"><b>UNSERE KONTOVERBINDUNG:</b></p>
+                <p>Nassauische Sparkasse 0159 042 00 1</p>
+                <p>Kontoinhaber: <b>Faust-Kultur-Stiftung</b></p>
+                <p>BLZ: 51050015</p>
+                <p>IBAN: DE89 5105 0015 0159 0420 01</p>
+                <p>BIC NASSDE55XXX</p>
+                <p class="fst-italic">Wir versichern Ihnen, dass Ihre Daten vertraulich behandelt werden.</p>
+                <p class="fst-italic">(Bitte geben Sie Namen und Adresse in der Betreffzeile der Überweisung an, wenn eine Spendenquittung übersandt werden soll.)</p>
+            </div>
             <br />
             <p><b>Herzlichen Dank!</b></p>
-            <br /><br />
+            <br />
             <p><b>Nicole Thamm</b></p>
-            <p>Kontakt: <a href="mailto:ulla.bayerl@faustkulturstiftung.de">thamm@faustkulturstiftung.de</a></p>
-            
-
-
+            <p>Kontakt: <a href="mailto:thamm@faustkulturstiftung.de">thamm@faustkulturstiftung.de</a></p>
         </div>
-
-
     </div>
-</body>
+</div>
+
+<style>
+    .kontakt-content {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+        .kontakt-content .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .kontakt-content h1,
+        .kontakt-content h2,
+        .kontakt-content h3,
+        .kontakt-content h4,
+        .kontakt-content h5 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .kontakt-content a {
+            color: #e74c3c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .kontakt-content a:hover {
+                color: #c0392b;
+            }
+
+        .kontakt-content .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .kontakt-content .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+            .kontakt-content .cta-button:hover {
+                background-color: #c0392b;
+                color: white;
+            }
+
+        .kontakt-content .hero {
+            background-color: #ecf0f1;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+</style>

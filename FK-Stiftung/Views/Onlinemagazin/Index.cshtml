@@ -1,42 +1,114 @@
-﻿
-
-
-@{
+﻿@{
     ViewData["Title"] = "Onlinemagazin";
 }
 
-<head>
-    <style>
-        a {
-            color: red;
-        }
-    </style>
-</head>
-
-<div class="container">
-    <div class="row align-items-center">
-        <div class="col-md-4">
-            <img src="~/Images/OnlineMagazin.png" class="img-fluid" alt="Bild" style="height: auto; max-height: 100%; max-width: 100%;" />
-        </div>
-        <div class="col-md-8">
-            <h5 class="text-start">DIE FAUST KULTUR STIFTUNG IST DIE TRÄGERIN DES KULTURPORTALS WWW.FAUST-KULTUR.DE</h5>
-            <p class="text-start">
-                Faust-Kultur: <a href="http://www.faust-kultur.de" target="_blank">www.faust-kultur.de</a></h5> wurde 2010 als »Weltbühne für Autoren und Künstler« gegründet. In Berichten, Rezensionen, Interviews und Porträts kommen literarische, künstlerische und musikalische Themen ebenso zur Sprache wie philosophische, gesellschaftliche und politische Kontroversen. Die inhaltliche Vielfalt einer Kulturzeitschrift wird durch die gestalterischen Möglichkeiten der Online-Technik optimiert. Texte, Fotos, Audiodateien und Videoeinspielungen ergänzen einander oder wirken als eigenständige Kunstformen. Darüber hinaus gewährleistet die regelmäßige Aktualisierung einen stets angemessenen Informationsstand. Ein Archiv gibt den publizierten Inhalten langfristige Präsenz.
-                <br /><br />
-                Welche Themen behandelt und welche Beiträge aufgenommen werden, entscheidet die Redaktion.
-            </p>
+<div class="onlinemagazin-content">
+    <div class="hero">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <img src="~/Images/OnlineMagazin.png" class="img-fluid" alt="Faust Kultur Logo" style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="col-md-8">
+                <h1 class="mb-4">DIE FAUST KULTUR STIFTUNG</h1>
+                <h3 class="mb-3">Trägerin des Kulturportals <a href="http://www.faust-kultur.de" target="_blank">www.faust-kultur.de</a></h3>
+            </div>
         </div>
     </div>
-    <div>
-        <br /><br />
-        <p class="text-start"><b>DIE FREIE MITARBEIT DER AUTORINNEN UND AUTOREN UND DIE SPENDEN VIELER LESERINNEN UND LESER SORGEN FÜR DEN ERHALT DES PORTALS.</b></p>
-        <br /><br />
-        <p class="text-start">
-            Sie können die Arbeit von Faust-Kultur mit einer einmaligen <a href="/Kontakt">Spende</a> oder auch regelmäßig mit einem festen Betrag unterstützen.
-            <br /><br />
-            Jede Spende ist steuerlich absetzbar. Die Faust Kultur Stiftung stellt Ihnen hierfür gerne eine Spendenquittung aus.
-            <br /><br />
-            <b>Jeder Cent wird Qualität!</b>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <h2 class="mb-4">Über Faust-Kultur</h2>
+            <p>
+                Gegründet im Jahr 2010 als »Weltbühne für Autoren und Künstler«, bietet Faust-Kultur eine vielfältige Plattform für kulturelle Diskurse. Unser Portal umfasst:
+            </p>
+            <ul>
+                <li>Berichte und Rezensionen</li>
+                <li>Interviews und Porträts</li>
+                <li>Literarische, künstlerische und musikalische Themen</li>
+                <li>Philosophische, gesellschaftliche und politische Kontroversen</li>
+            </ul>
+            <p>
+                Durch die Kombination von Texten, Fotos, Audiodateien und Videos schaffen wir ein multimediales Erlebnis, das die Grenzen traditioneller Kulturzeitschriften sprengt.
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <div class="highlight">
+                <h4>Unsere Stärken</h4>
+                <ul>
+                    <li>Regelmäßige Aktualisierung</li>
+                    <li>Umfangreiches Archiv</li>
+                    <li>Innovative Online-Technik</li>
+                    <li>Vielfältige Perspektiven</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="mb-4">Unterstützen Sie Faust-Kultur</h2>
+        <p>
+            Die Qualität und Unabhängigkeit unseres Portals wird durch die freie Mitarbeit unserer Autorinnen und Autoren sowie durch die großzügigen Spenden unserer Leserinnen und Leser ermöglicht.
+        </p>
+        <p>
+            <strong>Jeder Cent trägt zur Qualität bei!</strong>
+        </p>
+        <a href="/Kontakt" class="cta-button">Jetzt spenden</a>
+        <p class="mt-3">
+            <small>Alle Spenden sind steuerlich absetzbar. Gerne stellen wir Ihnen eine Spendenquittung aus.</small>
         </p>
     </div>
 </div>
+
+<style>
+    .onlinemagazin-content {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+        .onlinemagazin-content h1,
+        .onlinemagazin-content h2,
+        .onlinemagazin-content h3,
+        .onlinemagazin-content h4,
+        .onlinemagazin-content h5 {
+            color: #2c3e50;
+        }
+
+        .onlinemagazin-content a {
+            color: #e74c3c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .onlinemagazin-content a:hover {
+                color: #c0392b;
+            }
+
+        .onlinemagazin-content .hero {
+            background-color: #ecf0f1;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .onlinemagazin-content .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+            .onlinemagazin-content .cta-button:hover {
+                background-color: #c0392b;
+                color: white;
+            }
+
+        .onlinemagazin-content .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+</style>
