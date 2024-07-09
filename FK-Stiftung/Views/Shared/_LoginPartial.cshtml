@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 <div class="login-register">
-    <a href="@Url.Action("Register", "Home")">Registrieren</a>
-    <a href="@Url.Action("Login", "Home")">Anmelden</a>
+    <a class="nav-link" asp-area="Identity" asp-page="/Account">Registrieren</a>
+    <a class="nav-link" asp-area="Identity" asp-page="/Account">Anmelden</a>
 </div>
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager

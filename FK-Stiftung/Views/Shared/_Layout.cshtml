@@ -134,8 +134,8 @@
 <body>
     <header>                              
         <div class="login-register">
-            <a href="@Url.Action("kp")">Registrieren</a>
-            <a href="@Url.Action("Login", "Account")">Anmelden</a>
+            <a asp-area="Identity" asp-page="/Account/Register">Registrieren</a>
+            <a asp-area="Identity" asp-page="/Account/Login">Anmelden</a>
         </div>
         <div class="text-center">
             <h1 class="page-title" onclick="location.href='@Url.Action("Index", "Home")'">FAUST KULTUR STIFTUNG</h1>
