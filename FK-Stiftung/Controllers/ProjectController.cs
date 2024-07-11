@@ -1,26 +1,48 @@
 ﻿using FK_Stiftung.Data;
 using FK_Stiftung.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FK_Stiftung.Controllers
 {
     public class ProjectController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public ProjectController(ApplicationDbContext db)
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ProjectController(ApplicationDbContext db, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
             _db = db;
-        }
-        public IActionResult Index()
-        {
-            List<Project> objProjectList = _db.Projects.ToList();
-            return View(objProjectList);
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
-        public IActionResult Index2()
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.Email == "admin@faustkultur.de")
+            {
+                return RedirectToAction("Index2");
+            }
+
             List<Project> objProjectList = _db.Projects.ToList();
-            return View(objProjectList);
+            return View("Index", objProjectList);
+        }
+
+        public async Task<IActionResult> Index2()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.Email == "admin@faustkultur.de")
+            {
+                List<Project> objProjectList = _db.Projects.ToList();
+                return View("Index2", objProjectList);
+            }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()
@@ -31,10 +53,10 @@ namespace FK_Stiftung.Controllers
         [HttpPost]
         public IActionResult Create(Project obj)
         {
-            //server-side validation
+            // Server-side validation
             if (obj.Name == obj.Description)
             {
-                ModelState.AddModelError("name", "Name und Beschreibung können nicht exakt gleich sein");
+                ModelState.AddModelError("name", "Name and description cannot be exactly the same");
             }
 
             if (ModelState.IsValid)
@@ -46,8 +68,6 @@ namespace FK_Stiftung.Controllers
             return View();
         }
 
-        // pause
-
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -56,10 +76,6 @@ namespace FK_Stiftung.Controllers
             }
 
             Project? projectFromDb = _db.Projects.Find(id);
-            // Other ways to retrieve data from the database
-            //  Project? projectFromDb1 = _db.Projects.FirstOrDefault(u => u.Id == id);
-            //   Project? projectFromDb2 = _db.Projects.Where(u => u.Id == id).FirstOrDefault();
-
             if (projectFromDb == null)
             {
                 return NotFound();
@@ -70,12 +86,6 @@ namespace FK_Stiftung.Controllers
         [HttpPost]
         public IActionResult Edit(Project obj)
         {
-            //server-side validation
-            /*if (obj.Name == obj.Description)
-            {
-                ModelState.AddModelError("name", "Name und Beschreibung können nicht exakt gleich sein");
-            }*/
-
             if (ModelState.IsValid)
             {
                 _db.Projects.Update(obj);
@@ -84,7 +94,7 @@ namespace FK_Stiftung.Controllers
             }
             return View();
         }
-        // pause
+
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -93,10 +103,6 @@ namespace FK_Stiftung.Controllers
             }
 
             Project? projectFromDb = _db.Projects.Find(id);
-            // Other ways to retrieve data from the database
-            //  Project? projectFromDb1 = _db.Projects.FirstOrDefault(u => u.Id == id);
-            //   Project? projectFromDb2 = _db.Projects.Where(u => u.Id == id).FirstOrDefault();
-
             if (projectFromDb == null)
             {
                 return NotFound();

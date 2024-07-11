@@ -1,50 +1,64 @@
 using FK_Stiftung.Data;
 using FK_Stiftung.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Security.Policy;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FK_Stiftung.Controllers
 {
     public class ProjektFoerdererController : Controller
     {
-        /*public IActionResult Index()
-        {
-            return View();
-        }*/
         private readonly ApplicationDbContext _db;
-        public ProjektFoerdererController(ApplicationDbContext db)
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ProjektFoerdererController(ApplicationDbContext db, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
             _db = db;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
-            return View(donors);
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.Email == "admin@faustkultur.de")
+            {
+                return RedirectToAction("Index2");
+            }
+            List<ProjektFoerderer> objProjektFoerdererList = _db.ProjektFoerderer.ToList();
+            return View("Index", objProjektFoerdererList);
         }
-        public IActionResult Index2()
+
+        public async Task<IActionResult> Index2()
         {
-            List<ProjektFoerderer> donors = _db.ProjektFoerderer.ToList();
-            return View(donors);
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.Email == "admin@faustkultur.de")
+            {
+                List<ProjektFoerderer> objProjektFoerdererList = _db.ProjektFoerderer.ToList();
+                return View("Index2", objProjektFoerdererList);
+            }
+            return RedirectToAction("Index");
         }
+
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(ProjektFoerderer names)
+        public IActionResult Create(ProjektFoerderer obj)
         {
             if (ModelState.IsValid)
             {
-                _db.ProjektFoerderer.Add(names);
+                _db.ProjektFoerderer.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
-
-        // pause
 
         public IActionResult Edit(int? id)
         {
@@ -52,28 +66,17 @@ namespace FK_Stiftung.Controllers
             {
                 return NotFound();
             }
-
-            ProjektFoerderer? nameFromDb = _db.ProjektFoerderer.Find(id);
-            // Other ways to retrieve data from the database
-            //  Project? projectFromDb1 = _db.Projects.FirstOrDefault(u => u.Id == id);
-            //   Project? projectFromDb2 = _db.Projects.Where(u => u.Id == id).FirstOrDefault();
-
-            if (nameFromDb == null)
+            ProjektFoerderer? projektFoerdererFromDb = _db.ProjektFoerderer.Find(id);
+            if (projektFoerdererFromDb == null)
             {
                 return NotFound();
             }
-            return View(nameFromDb);
+            return View(projektFoerdererFromDb);
         }
 
         [HttpPost]
         public IActionResult Edit(ProjektFoerderer obj)
         {
-            //server-side validation
-            /*if (obj.Name == obj.Description)
-            {
-                ModelState.AddModelError("name", "Name und Beschreibung können nicht exakt gleich sein");
-            }*/
-
             if (ModelState.IsValid)
             {
                 _db.ProjektFoerderer.Update(obj);
@@ -82,38 +85,32 @@ namespace FK_Stiftung.Controllers
             }
             return View();
         }
-        // pause
+
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-
-            ProjektFoerderer? nameFromDb = _db.ProjektFoerderer.Find(id);
-            // Other ways to retrieve data from the database
-            //  Project? projectFromDb1 = _db.Projects.FirstOrDefault(u => u.Id == id);
-            //   Project? projectFromDb2 = _db.Projects.Where(u => u.Id == id).FirstOrDefault();
-
-            if (nameFromDb == null)
+            ProjektFoerderer? projektFoerdererFromDb = _db.ProjektFoerderer.Find(id);
+            if (projektFoerdererFromDb == null)
             {
                 return NotFound();
             }
-            return View(nameFromDb);
+            return View(projektFoerdererFromDb);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            ProjektFoerderer name = _db.ProjektFoerderer.Find(id);
-            if (name == null)
+            ProjektFoerderer obj = _db.ProjektFoerderer.Find(id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.ProjektFoerderer.Remove(name);
+            _db.ProjektFoerderer.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
     }
 }
