@@ -79,22 +79,7 @@
             gap: 10px;
         }
 
-            .login-register a {
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-            }
-
-                .login-register a:first-child {
-                    background-color: red;
-                    color: black;
-                }
-
-                .login-register a:last-child {
-                    
-                    background-color: black;
-                    color: white;
-                }
+            
 
         .footer {
             background-color: var--(backgroundcolor);
@@ -133,10 +118,6 @@
 </head>
 <body>
     <header>                              
-        <div class="login-register">
-            <a asp-area="Identity" asp-page="/Account/Register">Registrieren</a>
-            <a asp-area="Identity" asp-page="/Account/Login">Anmelden</a>
-        </div>
         <div class="text-center">
             <h1 class="page-title" onclick="location.href='@Url.Action("Index", "Home")'">FAUST KULTUR STIFTUNG</h1>
         </div>
@@ -164,6 +145,7 @@
                             <a class="nav-link" asp-controller="Kontakt" asp-action="Index">Kontakt</a>
                         </li>
                     </ul>
+                    <partial name ="_LoginPartial" />
                 </div>
             </div>
         </nav>
